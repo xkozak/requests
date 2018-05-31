@@ -286,6 +286,9 @@ class HTTPAdapter(BaseAdapter):
         response.request = req
         response.connection = self
 
+        # Save the peer's SSL certificate.
+        response.peercert = getattr(resp, 'peercert', None)
+
         return response
 
     def get_connection(self, url, proxies=None):
